@@ -43,7 +43,7 @@ app.use(
     resave: true,
   })
 );
-app.get(/.*/, (req, res) => res.sendFile(__dirname + '/dist/index.html'))
+app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'))
 app.get("/", (req, res) => res.send("hello :) my api is working"));
 app.use("/users", require("./routes/users"));
 app.use("/signals", require("./routes/signals"));
