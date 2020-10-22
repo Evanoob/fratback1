@@ -32,7 +32,7 @@ var authenticate = function authenticate(req, res, next) {
  */
 
  const decodeToken = function decodeToken(token) {
-     return jwt.decode(toekn);
+     return jwt.decode(token);
  }
 
  
