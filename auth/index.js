@@ -14,7 +14,7 @@ const secret = "@2018/_owlSimplonxwxw,HDnc)x:xzHey@";
 var authenticate = function authenticate(req, res, next) {
     try {
         const token = req.header("x-authenticate");
-        jwt.verify(token, secret);
+        jwt.verify(token, secret); // vérifie si le token est bon
         req.isAuthenticated = token;
         next(); // 0 error, call next middleware
     } catch (err) {
@@ -32,7 +32,7 @@ var authenticate = function authenticate(req, res, next) {
  */
 
  const decodeToken = function decodeToken(token) {
-     return jwt.decode(token);
+     return jwt.decode(token); // retourne le token décodé
  }
 
  
@@ -45,10 +45,10 @@ var authenticate = function authenticate(req, res, next) {
 
  const verifyToken = function verifyToken(token) {
      try {
-         const check = jwt.verify(token, secret);
-         return { msg : check, status: true};
+         const check = jwt.verify(token, secret); //on vérifie le jwt 
+         return { msg : check, status: true}; // true si c'est bon 
      }catch (err) {
-         return { msg : err.message, status: false};
+         return { msg : err.message, status: false}; // sinon false on envoie 1 err
      }
  };
 
@@ -60,8 +60,8 @@ var authenticate = function authenticate(req, res, next) {
   * @returns {Boolean} true if user credentials are correct, else false
   */
 
-  const createToken = function createToken(user, ip) {
-      return jwt.sign(
+  const createToken = function createToken(user, ip) { // créer le token à part d'user et ip
+      return jwt.sign( // on retourne les infos du jwt
           {
               infos: user,
               ip,
@@ -78,9 +78,9 @@ var authenticate = function authenticate(req, res, next) {
    * @returns {object} filteredUser : user minus sensitive values
    */
 
-   const removeSensitiveInfo = function removeSensitiveInfo(u) {
+   const removeSensitiveInfo = function removeSensitiveInfo(u) { // pour supprimer les infos sensibles
        if (!u) throw new Error("User object is required as argument");
-       const filteredUser = [];
+       const filteredUser = []; // les infos filtrés de user
        const keys = ["password", "email"];
 
        for (let key in keys) {
@@ -91,7 +91,7 @@ var authenticate = function authenticate(req, res, next) {
            if (u.hasOwnPorperty(prop)) filteredUser[prop] = u[prop];
        }
 
-       return filteredUser
+       return filteredUser // on retourne les infos de user filtré
    };
 
    module.exports = {

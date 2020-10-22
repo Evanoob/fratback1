@@ -1,7 +1,7 @@
 const router = new require("express").Router();
 const SignalModel = require("../models/Signal");
 
-//* ****SEE ALL SIGNALS***** */
+//* ****VOIR TS LES SIGNALEMENTS***** */
 router.get("/", async(req, res, next) => {
     try {
         const signals = await SignalModel.find()
@@ -12,7 +12,7 @@ router.get("/", async(req, res, next) => {
     }
 });
 
-//* ****SEE ONE SIGNAL***** */
+//* ****VOIR UN SIGNALEMENT***** */
 router.get("/:id", async (req, res,next) => {
     try {
         const post = await SignalModel.findById(req.params.id)
@@ -23,7 +23,7 @@ router.get("/:id", async (req, res,next) => {
     }
 });
 
-//* ****POST ONE SIGNAL***** */
+//* ****POSTER UN SIGNALEMENT***** */
 router.post("/", async (req, res, next) => {
     try {
         const newSignal = await SignalModel.create(req.body);
@@ -33,7 +33,7 @@ router.post("/", async (req, res, next) => {
     }
 });
 
-//* ****DELETE ONE SIGNAL***** */
+//* ****SUPPRIMER UN SIGNALEMENT***** */
 router.delete("/:id", async (req, res, next) => {
     try {
         const deleteSignal = await SignalModel.findByIdAndDelete(req.params.id);
@@ -43,7 +43,7 @@ router.delete("/:id", async (req, res, next) => {
     }
 });
 
-//* ****UPDATE ONE SIGNAL**** */
+//* ****MODIFIER UN SIGNALEMENT**** */
 router.patch("/:id", async (req, res, next) => {
     try {
         const updateSignal = await SignalModel.findByIdAndUpdate(req.params.id,

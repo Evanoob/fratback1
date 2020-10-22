@@ -1,11 +1,11 @@
 require("dotenv").config();
 require("./config/mongo");
 
-const express = require("express");
+const express = require("express"); // framework de nodeJs
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoStore = require("connect-mongo")(session);
-const cors = require("cors");
+const cors = require("cors"); // sert de passerelle entre le back et le front qd ils st séparés
 const morgan = require("morgan"); // morgan est un logger
 const app = express();
 
@@ -50,8 +50,8 @@ app.use("/signals", require("./routes/signals"));
 app.use("/actus", require("./routes/actus"));
 app.use("/auth", require ("./routes/auth"));
 app.use("/contact", require("./routes/contact"));
-// app.use("/poles", require ("./routes/api.poles"));
 
+// app.use("/poles", require ("./routes/api.poles"));
 // app.use("/chatMsg", require("./routes/api.chatMsgs"));
 // app.use("/forums", require("./routes/api.forums"));
 // app.use("/subjects", require("./routes/api.subjects"));

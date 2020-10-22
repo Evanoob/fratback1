@@ -1,8 +1,8 @@
 const router = new require("express").Router();
 const ActuModel = require("../models/Actu");
 
-//* ****SEE ALL ACTUS***** */
-router.get("/", async (req, res, next) => {
+//* ****VOIR TOUTES LES ACTUS***** */
+router.get("/", async (req, res, next) => { // requête asynchrone
     try {
         const actus = await ActuModel.find()
         res.json(actus);
@@ -11,7 +11,7 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-//* ****SEE ONE ACTU***** */
+//* ****VOIR UNE ACTU***** */
 router.get("/:id", async (req, res, next) => {
     try {
         const actu = await ActuModel.findById(req.params.id)
@@ -21,7 +21,7 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-//* ****POST ONE ACTU***** */
+//* ****POSTER UNE ACTU***** */
 router.post("/", async (req, res, next) => {
     try {
         const newActu = await ActuModel.create(req.body);
@@ -31,7 +31,7 @@ router.post("/", async (req, res, next) => {
     }
 });
 
-//* ****DELETE ONE ACTU***** */
+//* ****SUPPRIMER UNE ACTU***** */
 router.delete("/:id", async (req, res, next) => {
     try {
         const deleteActu = await ActuModel.findByIdAndDelete(req.params.id);
@@ -41,7 +41,7 @@ router.delete("/:id", async (req, res, next) => {
     }
 });
 
-//* ****UPDATE ONE ACTU**** */
+//* ****MODIFIER UNE ACTU**** */
 router.patch("/:id", async (req, res, next) => {
     try {
         const updateActu = await ActuModel.findByIdAndUpdate(req.params.id,

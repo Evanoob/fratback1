@@ -2,11 +2,10 @@
 const router = new require("express").Router();
 const UserModel = require("../models/User");
 const auth = require("./../auth");
-// const auth = require("./../auth/index");
 const bcrypt = require("bcrypt");
 
 
-//* ****SEE ALL USERS***** */
+//* ****VOIR TS LES UTILISATEURS***** */
 router.get("/", async (req, res, next) => {
     try {
         const users = await UserModel.find();
@@ -17,7 +16,7 @@ router.get("/", async (req, res, next) => {
     }
 });
 
-//* ****SEE ONE USER***** */
+//* ****VOIR UN UTILISATEUR***** */
 router.get("/:id", async (req, res, next) => {
    try {
         const user = await UserModel.findById(req.params.id);
@@ -28,7 +27,7 @@ router.get("/:id", async (req, res, next) => {
     }
 });
 
-//* ****POST ONE USER***** */
+//* ****POSTER UN UTILISATEUR***** */
 router.post("/", async (req, res, next) => {
     try {
         const newUser = await UserModel.create(req.body);
@@ -38,7 +37,7 @@ router.post("/", async (req, res, next) => {
     }
 });
 
-//* ****DELETE ONE USER***** */
+//* ****SUPPRIMER UN UTILISATEUR***** */
 router.delete("/:id", async (req, res, next) => {
     try {
         const deleteUser = await UserModel.findByIdAndDelete(req.params.id);
@@ -48,7 +47,7 @@ router.delete("/:id", async (req, res, next) => {
     }
 });
 
-//* ****UPDATE ONE USER***** */
+//* ****MODIFIER UN UTILISATEUR***** */
 router.patch("/:id", async (req, res, next) => {
     try {
       const updateUser = await UserModel.findByIdAndUpdate(req.params.id, req.body, {
@@ -60,6 +59,7 @@ router.patch("/:id", async (req, res, next) => {
     }
   });
 
+  //* ***MODIFIER LE MOT DE PASSE***** */
   router.patch("/password/:id", auth.authenticate, async (req, res, next) => {
     var user = {
       ...req.body
